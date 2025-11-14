@@ -20,8 +20,8 @@ import {
 } from "../lib/markov";
 
 const transitionMatrix = buildTransitionMatrix();
-const MAX_GHOSTS = 10;
-const POINTS_PER_GHOST = 5;
+const MAX_GHOSTS = 20;
+const POINTS_PER_GHOST = 12;
 const POWER_PELLET_SCORE = 10;
 const FRIGHTENED_DURATION_MS = 7000;
 
@@ -150,7 +150,7 @@ export default function HomePage() {
   useEffect(() => {
   if (gameOver || !gameStarted) return;
 
-  const delay = frightened ? 400 : 220;
+  const delay = frightened ? 450 : 200;
 
   const interval = setInterval(() => {
     setGhosts((prev) =>
