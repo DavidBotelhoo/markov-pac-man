@@ -30,9 +30,13 @@ export function GameGrid({
       ? "-rotate-90"
       : "rotate-90"; // down
 
+  const CELL_SIZE_REM = 0.75; // mantém o tamanho do sprite alinhado com cada célula
+
   // função que transforma (row,col) em um translate suave
   const cellTransform = (cell: Cell) => ({
-    transform: `translate(calc(var(--cell-size) * ${cell.col}), calc(var(--cell-size) * ${cell.row}))`,
+    transform: `translate(${cell.col * CELL_SIZE_REM}rem, ${
+      cell.row * CELL_SIZE_REM
+    }rem)`,
   });
 
   return (
@@ -51,7 +55,7 @@ export function GameGrid({
               const isWall = cell === 1;
 
               const baseCell =
-                "w-4 h-4 flex items-center justify-center";
+                "w-3 h-3 flex items-center justify-center";
               const bgClass = isWall
                 ? "bg-blue-500/80 shadow-[0_0_10px_rgba(59,130,246,0.9)]"
                 : "bg-[#020518]";
@@ -74,10 +78,7 @@ export function GameGrid({
         ))}
 
         {/* OVERLAY DE SPRITES (Pac-Man + fantasmas) – aboslute + transition */}
-        <div
-          className="pointer-events-none absolute inset-1"
-          style={{ ["--cell-size" as any]: "1rem" }} // 1rem = w-4/h-4
-        >
+        <div className="pointer-events-none absolute inset-1">
           {/* Pac-Man */}
           <div
             className="absolute transition-transform duration-200 linear"

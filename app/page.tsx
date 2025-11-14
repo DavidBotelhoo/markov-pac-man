@@ -189,7 +189,7 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#020015] via-[#02041f] to-black text-slate-50 flex flex-col items-center justify-center gap-4 px-2">
+    <main className="min-h-screen bg-gradient-to-b from-[#020015] via-[#02041f] to-black text-slate-50 flex flex-col items-center justify-start gap-4 px-2 pt-10 pb-10">
       <div className="text-center space-y-1 px-2">
         <h1 className="text-xl sm:text-2xl font-bold tracking-wide text-yellow-300 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
           Markov Maze – Pac-Man
@@ -287,7 +287,8 @@ export default function HomePage() {
             <button
               disabled={gameOver || !gameStarted}
               onClick={() => handleMove("up")}
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed"
+              onTouchStart={(e) => e.preventDefault()}
+              className="w-19 h-19 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed mt-2"
             >
               ▲
             </button>
@@ -296,25 +297,26 @@ export default function HomePage() {
             <button
               disabled={gameOver || !gameStarted}
               onClick={() => handleMove("left")}
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed"
+              onTouchStart={(e) => e.preventDefault()}
+              className="w-19 h-19 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed mt-2"
             >
               ◀
             </button>
             <button
               disabled={gameOver || !gameStarted}
-              onClick={() => handleMove("right")}
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              ▶
-            </button>
-          </div>
-          <div className="flex justify-center">
-            <button
-              disabled={gameOver || !gameStarted}
               onClick={() => handleMove("down")}
-              className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed"
+              onTouchStart={(e) => e.preventDefault()}
+              className="w-20 h-20 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed mt-2 mr-2 ml-2"
             >
               ▼
+            </button>
+            <button
+              disabled={gameOver || !gameStarted}
+              onClick={() => handleMove("right")}
+              onTouchStart={(e) => e.preventDefault()}
+              className="w-19 h-19 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-slate-800/90 border border-blue-400/60 flex items-center justify-center text-lg sm:text-xl text-slate-50 active:bg-blue-500/80 disabled:opacity-40 disabled:cursor-not-allowed mt-2"
+            >
+              ▶
             </button>
           </div>
         </div>

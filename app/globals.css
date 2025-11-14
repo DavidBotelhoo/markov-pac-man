@@ -29,3 +29,7 @@ body {
 .animate-pacman-mouth {
   animation: pacman-mouth 0.25s ease-in-out infinite alternate;
 }
+
+html, body {
+  touch-action: manipulation;
+}
