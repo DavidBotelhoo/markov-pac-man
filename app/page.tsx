@@ -23,6 +23,7 @@ const transitionMatrix = buildTransitionMatrix();
 const MAX_GHOSTS = 20;
 const POINTS_PER_GHOST = 12;
 const POWER_PELLET_SCORE = 10;
+const GHOST_EAT_SCORE = 25;
 const FRIGHTENED_DURATION_MS = 7000;
 
 export default function HomePage() {
@@ -166,16 +167,27 @@ export default function HomePage() {
 }, [gameOver, frightened, gameStarted]);
 
 
-  // colisión
+  // colisión + comer fantasmas no modo frightened
   useEffect(() => {
     if (gameOver || !gameStarted) return;
 
-    const caught = ghosts.some(
+    const overlappingGhosts = ghosts.filter(
       (g) => g.row === player.row && g.col === player.col
     );
 
-    if (caught) setGameOver(true);
-  }, [player, ghosts, gameOver, gameStarted]);
+    if (overlappingGhosts.length === 0) return;
+
+    if (frightened) {
+      setGhosts((prev) =>
+        prev.filter((g) => !(g.row === player.row && g.col === player.col))
+      );
+      setScore(
+        (prev) => prev + overlappingGhosts.length * GHOST_EAT_SCORE
+      );
+    } else {
+      setGameOver(true);
+    }
+  }, [player, ghosts, gameOver, gameStarted, frightened]);
 
   const handleRestart = () => {
     setPlayer(INITIAL_PLAYER);
@@ -190,7 +202,7 @@ export default function HomePage() {
 
   return (
     <>
-    <main className="bg-gradient-to-b from-[#020015] via-[#02041f] to-black text-slate-50 flex flex-col items-center justify-start gap-4 px-2 pt-12 pb-10">
+    <main className="min-h-screen bg-gradient-to-b from-[#020015] via-[#02041f] to-black text-slate-50 flex flex-col items-center justify-start gap-4 px-2 pt-12 pb-10">
       <div className="text-center space-y-1 px-2">
         <h1 className="text-xl sm:text-2xl font-bold tracking-wide text-yellow-300 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
           Markov Maze – Pac-Man
@@ -322,10 +334,10 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      <div className="text-center text-xs text-slate-500 pt-7">
+        © 2025 David Botelho.
+      </div>
     </main>
-    <footer className="bg-black text-center text-xs text-slate-500 py-5">
-      © 2025 David Botelho.
-    </footer>
     </>
   );
 }
