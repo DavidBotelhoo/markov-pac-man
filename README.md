@@ -129,18 +129,18 @@ Se agregaron:
 
 ## 📂 Estructura del proyecto
 
-/
-├── app/
-│ ├── page.tsx # Lógica del juego y render general
-│ ├── layout.tsx # Head + meta viewport (mobile fix)
-│ └── globals.css # Estilos globales
-├── components/
-│ └── GameGrid.tsx # Renderización del mapa + sprites + animaciones
-├── lib/
-│ ├── map.ts # Mapa original, pellets, power pellets, spawn
-│ └── markov.ts # Generación de la matriz de transición Markov
-├── public/
-└── README.md
+`/`
+`├── app/`
+`│ ├── page.tsx # Lógica del juego y render general`
+`│ ├── layout.tsx # Head + meta viewport (mobile fix)`
+`│ └── globals.css # Estilos globales`
+`├── components/`
+`│ └── GameGrid.tsx # Renderización del mapa + sprites + animaciones`
+`├── lib/`
+`│ ├── map.ts # Mapa original, pellets, power pellets, spawn`
+`│ └── markov.ts # Generación de la matriz de transición Markov`
+`├── public/`
+`└── README.md`
 
 ---
 
